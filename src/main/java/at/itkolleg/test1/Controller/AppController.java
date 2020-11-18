@@ -54,5 +54,14 @@ public class AppController {
         return iService.getOne(id);
     }
 
-    
+    public void changeCustomerById(Long id, Customer cNew){
+        Customer cOld = getCustomerById(id);
+        cService.deleteById(id);
+        cService.save(cNew);
+    }
+    public void changeInvoiceById(Long id, Invoice iNew){
+        Customer iOld = getCustomerById(id);
+        iService.deleteById(id);
+        iService.save(iNew);
+    }
 }
