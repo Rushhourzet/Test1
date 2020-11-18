@@ -46,4 +46,13 @@ public class AppController {
             throw new EntityExistsException("Invoice already exists!");
         }
     }
+
+    public Customer getCustomerById(Long id){
+        return cService.getOne(id);
+    }
+    public Invoice getInvoiceById(Long id){
+        return iService.getOne(id);
+    }
+
+    
 }
