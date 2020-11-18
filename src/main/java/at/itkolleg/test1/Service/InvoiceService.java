@@ -102,7 +102,7 @@ public class InvoiceService{
     }
 
     public <S extends Invoice> Page<S> findAll(Example<S> example, Pageable pageable) {
-        return repo.findAll(example, pageable)
+        return repo.findAll(example, pageable);
     }
     public <S extends Invoice> long count(Example<S> example) {
         return repo.count();
