@@ -111,4 +111,11 @@ public class InvoiceService{
     public <S extends Invoice> boolean exists(Example<S> example) {
         return repo.exists(example);
     }
+
+    public void updateById(Invoice i, Long id){
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+            repo.save(i);
+        }
+    }
 }

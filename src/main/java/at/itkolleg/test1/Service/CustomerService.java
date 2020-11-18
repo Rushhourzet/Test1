@@ -112,4 +112,11 @@ public class CustomerService {
     public <S extends Customer> boolean exists(Example<S> example) {
         return repo.exists(example);
     }
+
+    public void updateById(Customer c, Long id){
+        if(repo.existsById(id)){
+            repo.deleteById(id);
+            repo.save(c);
+        }
+    }
 }
