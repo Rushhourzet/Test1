@@ -64,4 +64,11 @@ public class AppController {
         iService.deleteById(id);
         iService.save(iNew);
     }
+
+    public void deleteCustomerById(Long id){
+        cService.deleteById(id);
+    }
+    public void deleteInvoiceById(Long id){
+        iService.deleteById(id);
+    }
 }
