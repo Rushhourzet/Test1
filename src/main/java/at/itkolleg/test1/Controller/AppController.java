@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.persistence.EntityExistsException;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class AppController {
@@ -27,11 +28,22 @@ public class AppController {
         return out;
     }
 
-    public boolean addCustomer(Customer c) throws Exception {
+    public void addCustomer(Customer c) throws Exception {
         if(!cService.existsById(c.getId())){
             cService.save(c);
-            return true;
+        } else{
+            throw new EntityExistsException("Customer already exists!");
         }
-        throw new EntityExistsException("Customer already exists!");
+    }
+
+    public void addInvoice(Customer c, Invoice i){
+        Set<Invoice> invoices = c.getInvoices();
+        if(invoices.stream().anyMatch(id -> id.getId() != i.getId())){
+            invoices.add(i);
+            c.setInvoices(invoices);
+        }
+        else{
+            throw new EntityExistsException("Invoice already exists!");
+        }
     }
 }
